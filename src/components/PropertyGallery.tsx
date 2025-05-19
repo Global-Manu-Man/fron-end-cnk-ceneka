@@ -39,13 +39,27 @@ export function PropertyGallery() {
           apiSecret: import.meta.env.VITE_CLOUDINARY_API_SECRET ? 'Sí' : 'No (usando valor por defecto)'
         });
         
-        // Usar el proxy configurado en vite.config.ts
+        // Determinar si estamos en desarrollo o producción
+        const isDevelopment = import.meta.env.DEV;
+        let apiUrl;
+        
+        if (isDevelopment) {
+          // En desarrollo, usar el proxy configurado en vite.config.ts
+          apiUrl = `/cloudinary-api/${cloudName}/resources/image?max_results=100`;
+        } else {
+          // En producción, usar la URL completa de la API de Cloudinary
+          apiUrl = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image?max_results=100`;
+        }
+        
+        console.log('URL de la API:', apiUrl);
+        
+        // Configurar la autenticación para la API de Cloudinary
         const response = await axios.get(
-          `/cloudinary-api/${cloudName}/resources/image?max_results=100`,
+          apiUrl,
           {
             headers: {
-              // Si es necesario, puedes agregar autenticación aquí
-              // 'Authorization': `Basic ${btoa(`${apiKey}:${apiSecret}`)}`
+              // Agregar autenticación básica para la API de Cloudinary
+              'Authorization': `Basic ${btoa(`${apiKey}:${apiSecret}`)}`
             }
           }
         );
