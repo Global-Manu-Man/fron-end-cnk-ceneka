@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, Phone, Users, Target, Briefcase, Image, MessageCircle } from 'lucide-react';
+import { Menu, X, Phone, Users, Target, Briefcase, Image } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -88,7 +88,7 @@ export function Navbar() {
                 {item.name}
               </button>
             ))}
-            <LanguageSwitcher />
+          
           </div>
 
           {/* Mobile Menu Button */}
@@ -119,6 +119,8 @@ export function Navbar() {
                 {item.name}
               </button>
             ))}
+            <div className="block px-3 py-2">
+            </div>
           </div>
         </div>
       )}
