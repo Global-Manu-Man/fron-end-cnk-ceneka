@@ -88,7 +88,7 @@ export function Navbar() {
                 {item.name}
               </button>
             ))}
-          
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
