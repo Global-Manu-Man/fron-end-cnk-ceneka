@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import axios from 'axios';
+
+const FALLBACK_IMAGES = [
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+];
 
 export function PropertyGallery() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -10,36 +15,30 @@ export function PropertyGallery() {
   const [error, setError] = useState<string | null>(null);
   const { t } = useLanguage();
 
-  const fallbackImages = [
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-  ];
+  const fetchImagesWithRetry = useCallback(async (retryCount = 0, maxRetries = 3) => {
+    try {
+      setLoading(true);
+      console.log(`Intento ${retryCount + 1} de ${maxRetries + 1}: Obteniendo imágenes desde el backend...`);
+      const apiUrl = 'https://cnk-ceneka.onrender.com/api/properties/cloudinary/images';
+      const response = await axios.get(apiUrl);
+      console.log('Respuesta de la API:', response.data);
 
-  useEffect(() => {
-    const fetchImagesWithRetry = async (retryCount = 0, maxRetries = 3) => {
-      try {
-        setLoading(true);
-        console.log(`Intento ${retryCount + 1} de ${maxRetries + 1}: Obteniendo imágenes desde el backend...`);
-        const apiUrl = 'https://cnk-ceneka.onrender.com/api/properties/cloudinary/images';
-        const response = await axios.get(apiUrl);
-        console.log('Respuesta de la API:', response.data);
-
-        if (response.data && response.data.success && response.data.data) {
-          const images = response.data.data.map((resource: { secure_url: string }) =>
-            resource.secure_url.trim()
-          );
-          console.log(`Se encontraron ${images.length} imágenes`);
-          setGalleryImages(images.length > 0 ? images : fallbackImages);
-        } else {
-          throw new Error('No se encontraron imágenes en la respuesta');
-        }
-      } catch (err: any) {
-        console.error('Error al cargar imágenes:', err);
-
+      if (response.data?.success && Array.isArray(response.data.data)) {
+        const images = response.data.data.map((resource: { secure_url: string }) =>
+          resource.secure_url.trim()
+        );
+        console.log(`Se encontraron ${images.length} imágenes`);
+        setGalleryImages(images.length > 0 ? images : FALLBACK_IMAGES);
+      } else {
+        throw new Error('No se encontraron imágenes en la respuesta');
+      }
+    } catch (err: unknown) {
+      console.error('Error al cargar imágenes:', err);
+      if (axios.isAxiosError(err)) {
         if (err.response?.status === 429) {
           const retryAt = err.response.data?.retryAt || 'más tarde';
           setError(`Límite alcanzado. Intenta ${retryAt}.`);
-          setGalleryImages(fallbackImages);
+          setGalleryImages(FALLBACK_IMAGES);
         } else if (retryCount < maxRetries) {
           const delay = Math.pow(2, retryCount) * 1000;
           console.log(`Reintentando en ${delay / 1000} segundos...`);
@@ -49,15 +48,17 @@ export function PropertyGallery() {
           return;
         } else {
           setError('No se pudieron cargar las imágenes. Usando respaldo.');
-          setGalleryImages(fallbackImages);
+          setGalleryImages(FALLBACK_IMAGES);
         }
-      } finally {
-        setLoading(false); // ✅ Siempre desactiva el loading
       }
-    };
-
-    fetchImagesWithRetry();
+    } finally {
+      setLoading(false); // ✅ Siempre apagamos loading
+    }
   }, []);
+
+  useEffect(() => {
+    fetchImagesWithRetry();
+  }, [fetchImagesWithRetry]);
 
   useEffect(() => {
     if (galleryImages.length <= 1) return;
