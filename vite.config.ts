@@ -10,8 +10,15 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+
   server: {
     proxy: {
+      '/api': {
+        target: 'https://cnk-ceneka.onrender.com',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
       '/cloudinary-api': {
         target: 'https://api.cloudinary.com/v1_1',
         changeOrigin: true,
@@ -19,6 +26,7 @@ export default defineConfig({
       },
     },
   },
+
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
