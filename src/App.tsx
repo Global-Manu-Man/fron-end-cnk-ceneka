@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { PropertyDetail } from './components/PropertyDetail';
+import { NotFoundPage } from './components/NotFoundPage';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/property/:id" element={<PropertyDetail />} />
+              {/* Ruta wildcard para capturar URLs inválidas */}
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
           <Footer />

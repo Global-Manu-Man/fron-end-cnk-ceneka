@@ -136,7 +136,12 @@ const translations: Translations = {
     'calidad': 'Calidad',
     'calidad-desc': 'Servicio personalizado y profesional',
     'resultados': 'Resultados',
-    'resultados-desc': 'Miles de clientes satisfechos'
+    'resultados-desc': 'Miles de clientes satisfechos',
+    
+    // NotFoundPage
+    'pagina-no-encontrada': '404 - Página no encontrada',
+    'ruta-no-existe': 'La ruta que buscas no existe o fue movida.',
+    'volver-inicio': 'Volver al Inicio'
   },
   en: {
     // Navbar
@@ -265,7 +270,12 @@ const translations: Translations = {
     'calidad': 'Quality',
     'calidad-desc': 'Personalized and professional service',
     'resultados': 'Results',
-    'resultados-desc': 'Thousands of satisfied clients'
+    'resultados-desc': 'Thousands of satisfied clients',
+    
+    // NotFoundPage
+    'pagina-no-encontrada': '404 - Page Not Found',
+    'ruta-no-existe': 'The path you are looking for does not exist or has been moved.',
+    'volver-inicio': 'Back to Home'
   }
 };
 
