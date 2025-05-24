@@ -42,7 +42,7 @@ export function AboutUs() {
             </div>
             <div className="space-y-4 pt-8">
               <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
                 alt="Reunión de negocios" 
                 className="rounded-lg shadow-lg h-64 w-full object-cover"
               />
