@@ -38,11 +38,11 @@ export function Footer() {
             <div className="space-y-2">
               <p className="flex items-center">
                 <MapPin className="h-5 w-5 mr-2" />
-                <span>Av. Principal #123, Ciudad</span>
+                <span>C. Dinamarca 67, Juárez, Cuauhtémoc, 06600 Mexcaltepec, CDMX</span>
               </p>
               <p className="flex items-center">
                 <Phone className="h-5 w-5 mr-2" />
-                <span>+52 (123) 456-7890</span>
+                <span>+52 55-7579-2279</span>
               </p>
               <p className="flex items-center">
                 <Mail className="h-5 w-5 mr-2" />
