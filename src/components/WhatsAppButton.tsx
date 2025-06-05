@@ -4,7 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 export function WhatsAppButton() {
   const { t } = useLanguage();
-  const phoneNumber = '+5255792279';
+  const phoneNumber = '+525534847816';
   
   const handleClick = () => {
     const encodedMessage = encodeURIComponent(t('mensaje-whatsapp'));

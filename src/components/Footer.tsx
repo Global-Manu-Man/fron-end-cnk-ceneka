@@ -42,7 +42,7 @@ export function Footer() {
               </p>
               <p className="flex items-center">
                 <Phone className="h-5 w-5 mr-2" />
-                <span>+52 55-7579-2279</span>
+                <span>+52 55-3484-7816</span>
               </p>
               <p className="flex items-center">
                 <Mail className="h-5 w-5 mr-2" />
