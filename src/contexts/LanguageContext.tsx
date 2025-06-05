@@ -106,6 +106,19 @@ const translations: Translations = {
     'pagina': 'Página',
     'de': 'de',
 
+    // Filters
+    'filtros': 'Filtros',
+    'filtros-avanzados': 'Filtros Avanzados',
+    'buscar': 'Buscar',
+    'buscar-por-id-o-titulo': 'Buscar por ID o Título',
+    'cualquier': 'Cualquier',
+    'construccion-min': 'Construcción Mínima',
+    'construccion-max': 'Construcción Máxima',
+    'terreno-min': 'Terreno Mínimo',
+    'terreno-max': 'Terreno Máximo',
+    'limpiar': 'Limpiar',
+    'aplicar-filtros': 'Aplicar Filtros',
+
     // Property Detail
     'cargando': 'Cargando',
     'volver': 'Volver',
@@ -239,6 +252,19 @@ const translations: Translations = {
     'siguiente': 'Next',
     'pagina': 'Page',
     'de': 'of',
+
+    // Filters
+    'filtros': 'Filters',
+    'filtros-avanzados': 'Advanced Filters',
+    'buscar': 'Search',
+    'buscar-por-id-o-titulo': 'Search by ID or Title',
+    'cualquier': 'Any',
+    'construccion-min': 'Min Construction',
+    'construccion-max': 'Max Construction',
+    'terreno-min': 'Min Land',
+    'terreno-max': 'Max Land',
+    'limpiar': 'Clear',
+    'aplicar-filtros': 'Apply Filters',
 
     // Property Detail
     'cargando': 'Loading',
