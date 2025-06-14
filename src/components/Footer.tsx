@@ -46,7 +46,7 @@ export function Footer() {
               </p>
               <p className="flex items-center">
                 <Mail className="h-5 w-5 mr-2" />
-                <span>contacto@cnkceneka.com</span>
+                <span>hola@ceneka.mx</span>
               </p>
             </div>
           </div>
